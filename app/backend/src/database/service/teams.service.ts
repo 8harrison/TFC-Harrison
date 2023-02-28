@@ -5,4 +5,10 @@ const findAll = async () => {
   return { type: null, message: teams };
 };
 
+const findOne = async (id: any) => {
+  const team = await teamsModel.findByPk(id);
+  return { type: null, message: team };
+};
+
 export default findAll;
+export { findOne };

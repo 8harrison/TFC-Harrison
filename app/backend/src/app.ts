@@ -1,5 +1,5 @@
 import * as express from 'express';
-import findAll from './database/controller/teamsController';
+import findAll, { one } from './database/controller/teamsController';
 
 class App {
   public app: express.Express;
@@ -11,6 +11,7 @@ class App {
 
     // Não remover essa rota
     this.app.get('/', (req, res) => res.json({ ok: true }));
+    this.app.get('/teams/:id', one);
     this.app.get('/teams', findAll);
   }
 
@@ -35,5 +36,3 @@ export { App };
 
 // Essa segunda exportação é estratégica, e a execução dos testes de cobertura depende dela
 export const { app } = new App();
-
-app.get('/teams', findAll);

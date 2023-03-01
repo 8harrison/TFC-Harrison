@@ -1,5 +1,6 @@
 import * as express from 'express';
 import findAll, { one } from './database/controller/teamsController';
+import createdLogin from './database/controller/user.controller';
 
 class App {
   public app: express.Express;
@@ -13,6 +14,7 @@ class App {
     this.app.get('/', (req, res) => res.json({ ok: true }));
     this.app.get('/teams/:id', one);
     this.app.get('/teams', findAll);
+    this.app.post('/login', createdLogin);
   }
 
   private config():void {

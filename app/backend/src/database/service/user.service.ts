@@ -1,4 +1,5 @@
 import * as Joi from 'joi';
+import { compareSync } from 'bcryptjs';
 import userModel from '../models/user.model';
 
 const schema = Joi.object({
@@ -7,10 +8,9 @@ const schema = Joi.object({
 });
 
 const login = async (email: string, password: string) => {
-  const createdLogin = await userModel.findOne({ where: { email, password } });
-
+  const createdLogin = await userModel.findOne({ where: { email } });
   const { error } = schema.validate({ email, password });
-  if (error || !createdLogin) {
+  if (error || !createdLogin || !compareSync(password, createdLogin.dataValues.password)) {
     const e: any = { status: 401, message: 'Invalid email or password' };
     throw e;
   }

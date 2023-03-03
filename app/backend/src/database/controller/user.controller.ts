@@ -19,4 +19,13 @@ const createdLogin = async (req: Request, res: Response) => {
   }
 };
 
-export default createdLogin;
+const loginRole = async (req: Request, res: Response) => {
+  const { authorization } = req.headers;
+  const jwtdecoded = jwt.verify(authorization as string, secret);
+  const string = JSON.stringify(jwtdecoded);
+  const desestring = JSON.parse(string as string);
+  console.log(jwtdecoded);
+  return res.status(200).json({ role: desestring.message.role });
+};
+
+export { createdLogin, loginRole };

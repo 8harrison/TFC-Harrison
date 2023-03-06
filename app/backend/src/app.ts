@@ -2,6 +2,7 @@ import * as express from 'express';
 import findAll, { one } from './database/controller/teamsController';
 import { createdLogin, loginRole } from './database/controller/user.controller';
 import validaToken from './database/midlewares/validaToken';
+import getAll from './database/controller/matches.controller';
 
 class App {
   public app: express.Express;
@@ -15,7 +16,9 @@ class App {
     this.app.get('/', (req, res) => res.json({ ok: true }));
     this.app.get('/login/role', validaToken, loginRole);
     this.app.get('/teams/:id', one);
+    this.app.get('/matches', getAll);
     this.app.get('/teams', findAll);
+
     this.app.post('/login', createdLogin);
   }
 

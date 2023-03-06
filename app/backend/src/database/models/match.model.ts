@@ -54,7 +54,7 @@ matchModel.belongsTo(teamModel, { foreignKey: 'away_team_id', as: 'awayTeam' });
 matchModel.belongsTo(teamModel, { foreignKey: 'home_team_id', as: 'homeTeam' });
 
 teamModel.hasMany(matchModel, { foreignKey: 'away_team_id', as: 'awayTeam' });
-teamModel.hasMany(matchModel, { foreignKey: 'homr_team_id', as: 'homeTeam' });
+teamModel.hasMany(matchModel, { foreignKey: 'home_team_id', as: 'homeTeam' });
 
 // matchModel.associate = (models) => {
 //   models.matchModel.belongsToMany(models.teamModel, {

@@ -24,6 +24,7 @@ teamModel.init({
   modelName: 'teams',
   timestamps: false,
 });
+
 // const teamsModel = (sequelize, DataTypes) => {
 //   const team = sequelize.define('Team', {
 //     teamName: DataTypes.STRING,

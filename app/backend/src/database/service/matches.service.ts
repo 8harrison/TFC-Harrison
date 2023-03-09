@@ -13,5 +13,10 @@ const getmatches = async (boolean: string) => {
   return { type: null, message: matches };
 };
 
+const patchMatch = async (id: string) => {
+  await matchModel.update({ inProgress: false }, { where: { id } });
+  return { type: null, message: 'Finished' };
+};
+
 export default getAll;
-export { getmatches };
+export { getmatches, patchMatch };

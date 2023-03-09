@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import findAll, { getmatches } from '../service/matches.service';
+import findAll, { getmatches, patchMatch } from '../service/matches.service';
 import { findOne } from '../service/teams.service';
 
 const mapNoMessage = async (message: any) => {
@@ -36,14 +36,14 @@ const matchesInProgress = async (req: Request, res: Response) => {
   const resulted = await mapNoMessage(message);
   if (type) return res.status(500).json(message);
   return res.status(200).json(resulted);
-  // console.log(boolean);
-  // console.log(boolean);
-  // const resultFilter = resulted.filter((partida) => console.log(partida));
-  // // const booleanToString = partida.inProgress.toString();
-  // const resultedFiltred = await Promise.all(resultFilter);
-  // console.log(resultedFiltred);
-  // console.log(resulted);
+};
+
+const finishedMatch = async (req: Request, res: Response) => {
+  const { id } = req.params;
+  const { type, message } = await patchMatch(id);
+  if (type) return res.status(500).json({ message });
+  return res.status(200).json({ message });
 };
 
 export default getAll;
-export { matchesInProgress };
+export { matchesInProgress, finishedMatch };

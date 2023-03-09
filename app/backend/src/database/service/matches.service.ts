@@ -23,5 +23,16 @@ const matchScore = async (id: string, homeTeamGoals: string, awayTeamGoals: stri
   return { type: null, message: score };
 };
 
+const matchCreated = async (obj:any) => {
+  const match = await matchModel.create({
+    homeTeamId: obj.homeTeamId,
+    awayTeamId: obj.awayTeamId,
+    homeTeamGoals: obj.homeTeamGoals,
+    awayTeamGoals: obj.awayTeamGoals,
+    inProgress: true,
+  });
+  return { type: null, message: match };
+};
+
 export default getAll;
-export { getmatches, matchFinished, matchScore };
+export { getmatches, matchFinished, matchScore, matchCreated };

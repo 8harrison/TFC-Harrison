@@ -2,7 +2,7 @@ import * as express from 'express';
 import findAll, { one } from './database/controller/teamsController';
 import { createdLogin, loginRole } from './database/controller/user.controller';
 import validaToken from './database/midlewares/validaToken';
-import { finishedMatch,
+import { createdMatch, finishedMatch,
   matchesInProgress, scoreMatch } from './database/controller/matches.controller';
 
 class App {
@@ -24,6 +24,7 @@ class App {
     this.app.patch('/matches/:id', validaToken, scoreMatch);
 
     this.app.post('/login', createdLogin);
+    this.app.post('/matches', validaToken, createdMatch);
   }
 
   private config():void {

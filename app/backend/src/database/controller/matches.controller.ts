@@ -55,9 +55,21 @@ const scoreMatch = async (req: Request, res: Response) => {
 };
 
 const createdMatch = async (req: Request, res: Response) => {
+  const { homeTeamId, awayTeamId } = req.body;
+  if (homeTeamId === awayTeamId) {
+    return res.status(422)
+      .json({ message: 'It is not possible to create a match with two equal teams' });
+  }
+  const teamHome = await findOne(homeTeamId);
+  const awayTeam = await findOne(awayTeamId);
+  console.log(teamHome);
+  if (!teamHome.message?.dataValues || !awayTeam.message?.dataValues) {
+    return res.status(404).json({ message: 'There is no team with such id!' });
+  }
   const { type, message } = await matchCreated(req.body);
   if (type) return res.status(500).json({ message });
   return res.status(201).json(message);
 };
+
 export default getAll;
 export { matchesInProgress, finishedMatch, scoreMatch, createdMatch };

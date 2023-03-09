@@ -12,7 +12,7 @@ const one = async (req: Request, res: Response) => {
   const { id } = req.params;
   const { type, message } = await findOne(id);
 
-  if (type) return res.status(500).json(message);
+  if (!type) return res.status(500).json(message);
 
   return res.status(200).json(message);
 };

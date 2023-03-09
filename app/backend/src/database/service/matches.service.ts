@@ -13,10 +13,15 @@ const getmatches = async (boolean: string) => {
   return { type: null, message: matches };
 };
 
-const patchMatch = async (id: string) => {
+const matchFinished = async (id: string) => {
   await matchModel.update({ inProgress: false }, { where: { id } });
   return { type: null, message: 'Finished' };
 };
 
+const matchScore = async (id: string, homeTeamGoals: string, awayTeamGoals: string) => {
+  const score = await matchModel.update({ homeTeamGoals, awayTeamGoals }, { where: { id } });
+  return { type: null, message: score };
+};
+
 export default getAll;
-export { getmatches, patchMatch };
+export { getmatches, matchFinished, matchScore };

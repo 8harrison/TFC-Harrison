@@ -84,7 +84,24 @@ it('retorna 200 de /matches/:id', async () => {
 
 it('retorna 200 de /matches post', async () => {
   const result = await chai.request(app)
-  .post('/matches').set('Authorization', "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJtZXNzYWdlIjp7ImlkIjoyLCJ1c2VybmFtZSI6IlVzZXIiLCJyb2xlIjoidXNlciIsImVtYWlsIjoidXNlckB1c2VyLmNvbSIsInBhc3N3b3JkIjoiJDJhJDA4JFk4QWJpOGpYdnNYeXFtLnJtcDBCLnVRQkE1cVV6N1Q2R2hsZy9DdlZyL2dMeFlqNVVBWlZPIn0sImlhdCI6MTY3OTAwNDExNiwiZXhwIjoxNjc5NjA4OTE2fQ.hFOrzLVoE4tJb6CXpIlci4nHbAb0_XZuVM29ohRUHYo")
+  .post('/matches').set('Authorization', TOKEN)
+  expect(result.status).to.be.equal(200);
+})
+
+it('retorna 404 de /matches post', async () => {
+  const result = await chai.request(app)
+  .post('/matches').set('Authorization', TOKEN)
+  expect(result.status).to.be.equal(401);
+})
+
+it('retorna 200 de /leaderBoard/home post', async () => {
+  const result = await chai.request(app)
+  .get('/leaderboard/home')
+  expect(result.status).to.be.equal(200);
+})
+it('retorna 200 de /leaderBoard/away post', async () => {
+  const result = await chai.request(app)
+  .get('/leaderboard/away')
   expect(result.status).to.be.equal(200);
 })
   // before(async () => {

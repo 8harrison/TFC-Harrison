@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import leaderBoardHomeTeam from '../service/leaderBoard.service';
+import leaderBoardHomeTeam from '../service/leaderBoardHome.service';
 
 const homeTeamLeaderBoard = async (_req: Request, res: Response) => {
   const leaderBoard = await leaderBoardHomeTeam();

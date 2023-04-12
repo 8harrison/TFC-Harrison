@@ -8,3 +8,4 @@ Não deixe de usar nossas dicas de escrita de README de projetos, e deixe sua cr
 - quais arquivos/pastas foram desenvolvidos por outra pessoa estudante;
 - quais arquivos/pastas foram desenvolvidos pela Trybe.
 -->
+Projeto no qual organizava os times de futebol e ranqueava-os pelas partidas vencidas. Foi utilizado, Sequelize, typescript, node.js, Express, Docker, TDD com: mocha e chai.
